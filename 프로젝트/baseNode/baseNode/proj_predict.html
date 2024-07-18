@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>분석 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Intro Section -->
+<section class="intro-section text-center bg-dark text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-6"> SAMPLECODE </h1>
+                <p class="lead"> <a href="https://www.youtube.com/hkcode" style="color: yellow;">www.youtube.com/hkcode </a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 탭 메뉴 추가 -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="true">예측#1</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="analysis-tab" data-toggle="tab" href="#analysis" role="tab" aria-controls="analysis" aria-selected="false">예측#2</a>
+    </li>
+</ul>
+
+   
+
+<!-- 탭 내용 추가 -->
+<div class="tab-content" id="myTabContent">
+
+    <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
+        
+        <!-- 첫번째 탭  -->
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="mb-3 text-center" style="font-size: 20px;"  > 예측 페이지 #1 </h1>
+                    <br>
+                                        <!-- Add the image here -->
+                    <div id="imageContainer">
+                        <label> {특성} 값 입력 시 {라벨}값을 예측합니다. </label>
+                        <label> 
+                            ['gender', 'car', 'reality', 'child_num', 'income_total', 'income_type', 'edu_type', 'house_type', 'DAY_EMPLOYED' ] 
+                        </label>
+                    </div>
+                    <br>
+                    <form>
+
+                        <div class="form-group">
+                            <label for="input1">gender </label>
+                            <input type="text" class="form-control" id="features1" placeholder="값을 입력하세요">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input2">car </label>
+                            <input type="text" class="form-control" id="features2" placeholder="값을 입력하세요">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="input3">reality</label>
+                            <input type="text" class="form-control" id="features3" placeholder="값을 입력하세요">
+                        </div>
+ 
+                         <div class="form-group">
+                            <label for="input4">child_num</label>
+                            <input type="text" class="form-control" id="features4" placeholder="값을 입력하세요">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input5">income_total</label>
+                            <input type="text" class="form-control" id="features5" placeholder="값을 입력하세요">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input6">income_type</label>
+                            <select class="form-control" id="features6">
+                                <option value="Commercial associate">Commercial associate</option>
+                                <option value="Working">Working</option>
+                                <option value="State servant">State servant</option>
+                                <option value="Pensioner">Pensioner</option>
+                                <option value="Student">Student</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input7">edu_type</label>
+                            <select class="form-control" id="features7">
+                                <option value="Higher education">Higher education</option>
+                                <option value="Secondary / secondary special">Secondary / secondary special</option>
+                                <option value="Incomplete higher">Incomplete higher</option>
+                                <option value="Lower secondary">Lower secondary</option>
+                                <option value="Academic degree">Academic degree</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input8">house_type</label>
+                            <select class="form-control" id="features8">
+                                <option value="'Municipal apartment">'Municipal apartment</option>
+                                <option value="House / apartment">House / apartment</option>
+                                <option value="With parents">With parents</option>
+                                <option value="Co-op apartment">Co-op apartment</option>
+                                <option value="Rented apartment">Rented apartment</option>
+                                <option value="Office apartment">Office apartment</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input9">DAY_EMPLOYED </label>
+                            <input type="text" class="form-control" id="features9" placeholder="값을 입력하세요">
+                        </div>
+
+
+                        <button type="button" class="btn btn-success btn-block" id="downloadBtn1">샘플데이터 다운로드</button>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-block" id="prdBtn">분석 시작</button>
+                        <div id=baseResult></div>
+        <!--                 <div class="form-group">
+                            <label id="input4">예측결과 </label>
+                        </div> -->
+                     </form>
+                    <div class="mt-4" id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="analysis" role="tabpanel" aria-labelledby="analysis-tab">
+        <!-- 기존 분석 페이지 내용 -->
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="mb-3 text-center" style="font-size: 20px;"  > 예측 페이지 #2 </h1>
+                    <label>준비중</label>
+                    <div class="mt-4" id="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // 새로운 탭 클릭 시 해당 탭으로 이동하는 함수
+    $(document).ready(function() {
+        $('#new-tab').on('click', function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    });
+
+</script>
+
+
+<script>
+    document.getElementById('downloadBtn1').addEventListener('click', function() {
+        var link = document.createElement("a");
+        link.href = "/datas/slab_predict_sample.xlsx"; // 다운로드할 파일의 경로
+        link.download = "slab_predict_sample.xlsx"; // 다운로드될 파일의 이름
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+</script>
+
+
+<script>
+
+    // config.json 파일 로드
+    var newHostname = "43.201.6.172";
+    var newPort = "9999"
+
+      // 분석시작 버튼 클릭 시 분석서버와 연계 코드
+      $("#prdBtn").click(function(){
+
+        let selectedFeat1 = $("#features1").val();
+        let selectedFeat2 = $("#features2").val();
+        let selectedFeat3 = $("#features3").val();
+        let selectedFeat4 = Number(("#features4").val());
+        let selectedFeat5 = Number($("#features5").val());
+        let selectedFeat6 = $("#features6").val();
+        let selectedFeat7 = $("#features7").val();
+        let selectedFeat8 = $("#features8").val();
+        let selectedFeat9 = Number($("#features9").val());
+
+        let urlBase = `http://${newHostname}:${newPort}`;
+
+        let urlFullBase = urlBase+"/predictBase";
+
+        let reqDataBase = {
+          'b_feat1': selectedFeat1,
+          'b_feat2': selectedFeat2,
+          'b_feat3': selectedFeat3,
+          'b_feat4': selectedFeat4,
+          'b_feat5': selectedFeat5,
+          'b_feat6': selectedFeat6,
+          'b_feat7': selectedFeat7,
+          'b_feat8': selectedFeat8,
+          'b_feat9': selectedFeat9,
+
+        };
+ 
+        const headersBase = {
+          "Content-Type": "application/json"
+        };
+
+        const dataBase = JSON.stringify(reqDataBase);
+        console.log(dataBase);
+        // ['HCLUS', 'PRO_PERCENT', 'HO_YN', 'PRO_YN']
+        $.ajax({
+          url: urlFullBase,
+          headers: headersBase,
+          data: dataBase,
+          method: 'POST',
+          success: function(data) {
+            console.log(data);
+            // $('#input4').text(${data.result});
+            $("#baseResult").append(`<div> features1: ${selectedFeat1} features2: ${selectedFeat2} features3: ${selectedFeat3} features4: ${selectedFeat4}=> ${data.result}]</div>`);
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
